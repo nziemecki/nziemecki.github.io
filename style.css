@@ -178,12 +178,12 @@ h1 {
   .project {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: flex;
-    padding: 1em;
+    padding: 20px;
   }
   .thumbnail {
-    margin-right: 1em;
-    height: 3em;
-    width: auto;
+    margin-right: 1.4em;
+    height: 4em;
+    width: 7em;
   }
 
   /*contact me section*/
