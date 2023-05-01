@@ -1,0 +1,279 @@
+
+/* Reset the default styles of HTML elements */
+html {
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+  }
+/*HEADER*/
+
+header {
+  background-image: url('h2.jpg');
+  background-size: cover;
+  background-position: center center;
+  height: 575px;
+  text-align: center;
+  padding-top: 60px; /* Set a height for your header */
+}
+h1 {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+    opacity: 0;
+    color: rgb(255, 170, 192);
+    padding-bottom: 35px;
+    animation: animateText 7s forwards;
+    height: 100px;
+    width: 400px;
+    padding-top: 18px;
+    margin: auto;
+    margin-bottom: 30px;
+    background-color: rgba(255, 255, 255, 0.36);
+    border-radius: 5px; 
+    -webkit-text-stroke: 1px rgb(252, 212, 212);
+    }
+
+@keyframes animateText {
+    from { 
+        opacity: 0;
+        font-size: 30px
+    }
+    to {
+        opacity: 1;
+        font-size: 55px;
+    }
+    from {
+        color: rgb(255, 208, 0);
+    }
+    to {
+        color: rgb(255, 170, 192);
+    }
+    
+}
+
+/*navlinks- "navlinks"*/
+.navlinks {  
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 225px;
+    height: 100px;
+    animation: animateText2 7s forwards;
+    font-size: 30px;
+    opacity: 0;
+    margin: auto;
+}
+
+@keyframes animateText2 {
+    from { 
+        opacity: 0;
+        
+    }
+    to {
+        opacity: 1;
+    }}
+
+.navlinks .navlinksli:hover {
+    font-weight: bold;
+    background-color: rgba(253, 232, 162, 0.36);
+}
+
+.navlinks .navlinksli{
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.36);
+    border-radius: 5px;
+}
+  /* About Me Section "about-me"*/
+.about-me {
+  background-color: #f0f6ff;
+  padding: 50px;
+  margin-left: 15px;
+  background-position: center;
+  border-radius: 5px;
+  
+}
+
+.about-me h2 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.about-me p {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.75;
+  margin-bottom: 30px;
+
+}
+
+.about-me ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-me ul li {
+  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.about-me ul li i {
+  margin-right: 10px;
+  color: #333;
+}
+  #about-me {
+    padding: 1em;
+    padding-left: 0em;
+    }
+
+/*cv button "cv"*/
+.about-me .cv {
+    font-size: 20px;
+    text-decoration: underline;
+    text-align: center;
+    padding-top: 8px;
+    height: 40px;
+    width: 100px;
+    margin: auto;
+}
+
+.about-me .cv:hover {
+    background-color: rgba(253, 232, 162, 0.505);
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/*Projects Section "project"*/
+  
+  #projects {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 25px;
+    padding-top:25px;
+    padding-left: 50px;
+
+    
+  }
+
+  #projects h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+
+  }
+
+  .project:hover {
+    background-color: #f0f6ff;
+    transition: 0.3s;
+    border-radius: 5px; 
+  }
+  .project {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    padding: 1em;
+  }
+  .thumbnail {
+    margin-right: 1em;
+    height: 3em;
+    width: auto;
+  }
+
+  /*contact me section*/
+  .contact {
+    padding: 50px;
+    background-color: #f0f6ff;
+    padding: 40px;
+    margin-left: 15px;
+    margin-right: 15px;
+    background-position: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .contact h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .contact form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact label {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .contact input,
+  .contact textarea {
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    width: 375px
+  }
+  
+  .contact input:focus,
+  .contact textarea:focus {
+    outline: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .contact button {
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 25px;
+    width: 200px;
+  }
+  
+  .contact button:hover {
+    background-color: #555;
+  }
+  
+  /* Set the default font family and font size */
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+/* Set the light blue background color */
+body {
+  background-color: #d7ecf3;
+}
+/*hyperlinks*/
+a {
+    color:black;
+}
+
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none;
+            color: black }
+
+
+a:hover { text-decoration: none; }
+
+
+a:active { text-decoration: none; }
+
+
+

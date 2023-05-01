@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>MIDTERM: PART 3</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: whitesmoke;
+            font-family: Lato, sans-serif;
+            color: #0D0000;
+        }
+        header {
+            padding: 6px 10%;
+        }
+        h1 {
+            display: inline-block;
+            margin-right: 20px;
+            color: #001323;
+        }
+        h2 {
+            display: inline-block;
+            color: #001323;
+        }
+        #map {
+            width: 80%;
+            height: 540px;
+            margin: 10px auto;
+        }
+        footer {
+            padding: 6px 10%;
+            width: 80%;
+        }
+        p {
+            font-size: 1em;
+            color: #001323;
+        }
+       
+        red {
+            color: red
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Midterm Part 4</h1>
+        <h2>Nat Ziemecki</h2>
+    </header>
+
+    <div id='map'></div>
+    
+    <footer>
+        <p>
+        </p>
+    </footer>
+
+<script>
+    
+    
+    var options = {
+            center: [42.0986, -75.9183],
+            zoom: 3
+    }
+    
+    var map = L.map('map', options);
+        
+    var tiles =  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 18,
+	ext: 'png'
+});
+
+var fuelTankCapacity = 100000;
+var fuelBurnRate = 12;
+
+const cities = {
+    sanFran :
+        {name : 'San Francisco',
+        latLong : L.latLng[37.620285, -122.380908]},
+    berlin :
+        {name : 'Berlin',
+        latLong : L.latLng[52.363963, 13.500941]},
+    bangkok :
+        {name : 'Bangkok',
+        latLong : L.latLng[13.683437, 100.749469]}
+}
+    /*var cityName = ['San Francisco', 'Berlin', 'Bangkok']
+    var cityLatLng = [[37.620285, -122.380908],[52.363963, 13.500941],[13.683437, 100.749469]]
+    var phillyLatLng = [39.872767, -75.243586]*/
+
+
+    var phillyMarker =
+            L.marker([philly])
+             .addTo(map)
+             .bindPopup(``);    
+   var sanFranMarker =
+            L.marker(cities.SanFran[latLong])
+             .addTo(map)
+             .bindPopup('');
+    var berlinMarker =
+            L.marker(cities.berlin[latLong])
+             .addTo(map)
+             .bindPopup('');  
+    var bangkokMarker =
+            L.marker(cities.bangkok[latLong])
+             .addTo(map)
+             .bindPopup('');
+
+    var philly = L.latLng([39.872767, -75.243586])
+   /* var sanFranObject = L.latLng([37.620285, -122.380908])
+    var berlinObject = L.latLng([52.363963, 13.500941])
+    var bangkokObject = L.latLng([13.683437, 100.749469])*/
+
+  /*  function calculateDistance(from, to) {
+  const distanceMeters = from.distanceTo(to);
+  const distanceKm = distanceMeters / 1000;
+  return Math.round(distanceInKm);
+
+  function calculateRemainingFuel(distance) {
+  const fuelTank = (1 - (distance * fuelBurnRate / tankCapacity)) * 100;
+  return Math.round(fuelTank);
+}
+}
+
+   /* for (let i = 0; i < cityName.length; i++) {
+        var cityPopup = cityName[i] + '<p></p>' 
+    };
+
+   /* function calcDistance(philly, city) {  
+                    var distance = philly.distanceTo(city)
+                    return distance}
+                
+    
+    var metersSanFran = phillyObject.distanceTo(sanFranObject)
+    var metersBerlin = phillyMarker.distanceTo(berlinMarker)
+    var metersBangkok = phillyMarker.distanceTo(bangkokMarker)
+
+    var meters = [metersSanFran, metersBerlin, metersBangkok]*/
+    //var meters = calcDistance([39.872767, -75.243586], cityLatLng)
+        
+    
+    //  CHECKING THE FUEL TANK WHEN YOU LAND IN PHILLY 
+    
+    // THE OBJECT OF THE ASSIGNMENT IS TO CREATE A POPUP THAT HAS THE FOLLOWING INFORMATION FOR 3 CITIES WITH FLIGHTS THAT HAVE DEPARTED FOR PHILADELPHIA 
+    // 1. The popup should have the name of the city the plane is departing from en route to Philadelphia (use a for loop for the names in the popup - very similar to what we have done) If you want to - you can include Philadelphia on the map 
+    // 2. The Popup should have the distance traveled from the origin city to Philadelphia (Using L.latLng objects and the distance.To method you create 3 seperate callers sending each city's L.latLng object into a function ultimately returning distance (make sure to convert from meters (the default) to KM and also use the Math.round() method (used in part 2) to make it look nice - once you have returned these distance values to callers represented by variables, you will put these variables in an array and use the looped version of them in the popup) See code above for an example of L.latLng and .distanceTo
+    // 3. The Popup should have the percentage of the fuel tank that is remaining once the plane lands in Philadelphia. You will create a function caller and send the looped version of the distance array (in km) to a function, which will return a looped version of how full the tank is as a percentage.
+    // 4. The Popup should indicate if the tank that needs to be refilled - write a an if and else statement - if the fuel level is under 75 percent it should be refilled. If the popup indicates the plane needs to be refilled change the font/color to signal it's importance.
+    
+    //Constants you should know / conventions to follow
+    // A 747 plane (we are assuming you are flying a 747) burns 12 liters of gas per KM 
+    // A L.latLng object will not work inside L.Marker to plot your points but it is necessary to use distance.To
+    // Distance from distance.To is in Meters - you should convert it to KM 
+    // A fulltank of Gas on a 747 varies - for this purpose I put it as 100,000 - if you wish to increase this value if you are working internationally - please do so!!!! 
+    
+    // Below I will give you some additional instructions about data creation, constants used, and hints for creating your functions 
+    
+    // HINTS
+    
+    // Pick 3 cities - Map Them Like We Always do - putting name and coordinate data in arrays - they can be any 3 cities - don't be afraid to recycle from other labs 
+ 
+    // Create 4 L.latLng objects. One for each city. Assign a varaible to each of them. From example: L.latLng(2.34, -5.65) They are similar to coordinates, but cannot be used in L.Marker - but are necessary to calculate distance. They will help us create distance. See the Leaflet API for more details - searh for latLng.  http://leafletjs.com/reference-1.3.0.html
+    
+    // The variables you create for the 3 cities other than Philadelphia will be sent to a function using seperate callers. 
+    // The code for distance looks likes this city1LatLng.distanceTo(city2LatLng) See the Leaflet API and search for distanceTo http://leafletjs.com/reference-1.3.0.html
+    // Once you have returned the distance value (in KM) create an array out of the values you used to represent the callers 
+    // Plug these values into your popup 
+    
+    // Use the distances you created in a looped form as a caller (represented by a varaible of course) and send them down to a function that will calculate the precentage of gas left in the tank
+    // Assuming that the plane burns 12 liters per KM traveled and has 100,000 capacity - return the value that is left in the tank after the trip to Philadelphia as a percentage. For example... 45 percent of the tank is left. Add it to your pop up.
+    
+    // Write an if and else statement that affirms or denies the need to fill the tank. Add it to your pop up. 
+    // To signal that refilling the tank is important change the font color/type if the tank needs to be refilled (yes or no). 
+    
+
+
+    
+</script>
+    
+</body>
+
+</html>

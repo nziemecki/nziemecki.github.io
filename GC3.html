@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Proportional Symbol Map- CovidCases</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: whitesmoke;
+            font-family: Lato, sans-serif;
+            color: #0D0000;
+        }
+        header {
+            padding: 6px 10%;
+        }
+        h1 {
+            display: inline-block;
+            margin-right: 20px;
+            color: #001323;
+        }
+        h2 {
+            display: inline-block;
+            color: #001323;
+        }
+        #map {
+            width: 80%;
+            height: 540px;
+            margin: 10px auto;
+        }
+        footer {
+            padding: 6px 10%;
+            width: 80%;
+        }
+        p {
+            font-size: 1em;
+            color: #001323;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Covid Deaths</h1>
+        <h2></h2>
+    </header>
+
+    <div id='map'></div>
+
+    <footer>
+        <p>Map authored by Nat Ziemecki
+           <span class="circle" style="color:blue"></span>
+        </p>
+    </footer>
+
+    <script src="countryDeaths.js"></script>
+    <script>
+
+var options = {
+            center: [40, 40],
+            zoom: 2
+    }
+    
+    var map = L.map('map', options);
+        
+    var tiles =  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom:25,
+	ext: 'png'
+});
+    map.addLayer(tiles);
+        
+    
+    
+    
+      L.geoJson(countries, {
+          pointToLayer: function(feature,latlng) {
+              console.log(feature.properties)
+              return L.circleMarker(latlng, {
+                 color: 'orange',
+                 weight: .75,
+                 fillColor: 'blue',
+                 fillOpacity: .5,
+                 radius: getRadius(feature.properties.Deaths_cumulative_total) //step4
+              });   
+          },
+          onEachFeature : function(feature,layer) {
+            console.log(feature.properties)
+            layer.on('mouseover', function() {
+                if (feature.properties.Deaths_cumulative_total > 10000)
+            layer.setStyle({
+                fillColor: 'red',
+                fillOpacity: 1
+                });
+                else if (feature.properties.Deaths_cumulative_total <= 10000 && feature.properties.Deaths_cumulative_total > 1000)
+            layer.setStyle({
+                fillColor: 'yellow',
+                fillOpacity: 1
+                });
+                else if  (feature.properties.Deaths_cumulative_total <= 1000 && feature.properties.Deaths_cumulative_total > 100)
+            layer.setStyle({
+                fillColor: 'orange',
+                fillOpacity: 1
+                });
+            });
+            layer.on('mouseout', function() {
+                layer.setStyle({
+                    fillColor: 'blue',
+                    fillOpacity: .5
+                });
+            });
+            layer.bindTooltip("<b>" + feature.properties.Name + "</b> <br>" + "Deaths: " + feature.properties.Deaths_cumulative_total).openTooltip()
+        }
+
+          
+        }).addTo(map);
+
+    
+
+        function getRadius(area){
+        var radius = Math.sqrt(area/Math.PI);
+        return radius * .3   
+    }
+
+          
+    </script>
+    
+</body>
+
+</html>

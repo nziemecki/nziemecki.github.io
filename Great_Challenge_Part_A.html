@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Midterm Part 3</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: whitesmoke;
+            font-family: Lato, sans-serif;
+            color: #0D0000;
+        }
+        header {
+            padding: 6px 10%;
+        }
+        h1 {
+            display: inline-block;
+            margin-right: 20px;
+            color: #001323;
+        }
+        h2 {
+            display: inline-block;
+            color: #001323;
+        }
+        #map {
+            width: 80%;
+            height: 540px;
+            margin: 10px auto;
+        }
+        footer {
+            padding: 6px 10%;
+            width: 80%;
+        }
+        p {
+            font-size: 1em;
+            color: #001323;
+        }
+        /* Additional style rules go here! */
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>What City am I from?</h1>
+        <h2>Click on the map to guess!</h2>
+    </header>
+
+    <div id='map'></div>
+
+    <footer>
+        <p>Map authored by Nat Ziemecki</p>
+        <p>Additional information about the data and map goes here.</p>
+        <p>
+        </p>
+    </footer>
+
+    <script>
+        
+   
+    var options = {
+            center: [40, 40],
+            zoom: 2
+    }
+    
+    var map = L.map('map', options);
+        
+    var tiles =  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom:18,
+	ext: 'png'
+});
+    map.addLayer(tiles);
+    
+
+          
+   var warsawMarker = L.latLng(52.241437, 21.026137); //Create Pat's Marker Lat Lng Object
+        
+   L.marker(warsawMarker, {
+    opacity :  0,  
+    icon : L.icon({
+            iconUrl: 'warsaw.png',
+            iconSize: [40, 36],
+
+        }),
+    }).addTo(map); 
+        
+    
+var markers = L.layerGroup().addTo(map); //Creates an empty Layer Group
+        
+        
+   map.on('click', function(e){ // PART 2 Handler user clicks on map executes e.... e is the object created through the click - we want the lat lon - thus e.latlng - were consoe logging it. ... we are then createing a marker L.Marker - but it will have the coordinates of teh click - e.latlng - we are then adding options we wish in this case - making it draggabe.... but nothing happens - what the fuck. We have to create a new handler for the drag end - and also the function for distance.
+       
+       
+        markers.clearLayers(); //Clears Layers when Things are started - this cleans of markers when we click 
+   
+       var clickCoord = e.latlng; 
+       console.log(e.latlng)
+       var marker = L.marker(clickCoord, { 
+              
+        });
+       
+       marker.addTo(markers) //ADDING THIS TO A LAYER
+       
+       var meters = calcDistance(warsawMarker, clickCoord) /// Function Caller - takes information from PatsMarker and click coord click oject lat lon
+        console.log(meters) // CONSOLE LOG OF CLICK!!!
+       // PART 3 FUNCTION FOR DISTANCE
+       
+       var hint = ""
+            if (meters/1609.34 > 25 && meters/1609.34 < 500) {
+                hint = "<p><u>HOT!!! HOT!!! HOT!!!</u></p>"
+            } else if (meters/1609.34 > 500 && meters/1609.34 < 3000) {
+                hint = "<p><u>Warm but NOT hot!</u></p>"
+            } else if (meters/1609.34 > 3000 && meters/1609.34 < 7000) {
+                hint = "<p><u>Keep trying you'll get there eventually</u></p>"
+            } else if (meters/1609.34 > 7000 && meters/1609.34 < 10000) {
+                hint = "<p><u>Way far! <br> but at least you're not about to fall of the edge of the world.</u></p>"
+            } else if (meters/1609.34 > 1250) {
+                hint = "<p><u>You're as far off as is pysically possible, truly...</u></p>"
+            } else if (meters/1609.34 < 25) {
+                hint = "<p> WARSAW, POLAND </p>",
+                warsawMarker.setOpacity(1)
+            }
+
+        marker.bindPopup(hint + "The amount of Miles from my birthplace" +(meters/1609.34).toLocaleString()).openPopup() 
+       
+       });
+      
+        function calcDistance(warsaw, click) {  
+            var distance = warsaw.distanceTo(click)
+            return distance
+        }
+      
+        
+       // Instuctions.
+        
+       // Overview: You will create a game. You will choose a hidden location for the user to find. They must click around at the world scale until they find this location. They will know if they are getting closer or further based on how far they are from the marker. I chose 5 categories - the user should get a different popup based on how far they are away from the hidden marker. Every time the user clicks the map previous markers should be removed. Finally - when the user finds the hidden location witha click a) the location should appear b) the locations should be changed to an icon representing the place c) the marker created upon click should become invisible (at least until you click again)
+        
+       // Hint: Much of this quiz can be taken from a previous exercise we did. I left the code here to help you. Specifically the idea of creating markers with a user click that are a defined distance from a single point.
+        
+       // Step 1: Set the zoom to a minimum and make sure the user starts at the world scale. You may change the tiles but since you are changing the opacity of your hidden location - you want to have a semi dark or dark background. The tiles I started you with work for this purpose.
+        //Done
+       // Step 2: Create a marker for your hidden location - it can be anywhere just make sure you use your options to make it invisible to the user! Also please use a different location than Pats (what is given).
+       //Add Marker invisibility
+        // Step 3: Create a group for for your markers
+       //Done
+        // Step 4: Create an event listener/event/handler. (You can take this code from a lab #6) In the handler you should start by removing any markers on the map (using markers.clearLayers()) Then create a marker that will appear on a user click. Add this marker to the layer group created above. Using a variable representing a caller and a funcion to calculate the distance in miles between the user click and the hidden location. Remember that the default units for distanceto() are meters - we convert them to miles dividing them by the contstant 1609.34 (We did all of this in lab #6 - it's written in the code above)
+      //Done
+        //Step 5: Create a series of if, else if, and else statements based on the distance calulated from the user's click to the hidden location. 
+      //Done
+        // There should be five if and else statements based on the following criteria.  within 500 miles, between 500 and 3000miles, between 3000 and 7000 miles, between 7000 and 10000 miles, and greater than 12500 miles. 
+       
+        //  For example: The first category will be   if (distance < 500) { ...
+        
+        // Step 6: Each different category or distance range should give the user a different messages. The popup should come automatically and say something like freezing, cold, warm, hot, and you found it. It would be fun to use color here, but I don't think you will have time. 
+        
+        // Step 7: When the user hits the right location use a series of methods to
+        // a) make the hidden location you chose become visible (show and tell #3)
+        // b) change the marker of the hidden location to an icon that makes sense (show and tell #3) 
+        // c) change the marker created upon click to turn invisible - at least until the next click. (same as A but you are using the marker created with the click instead of the hidden location)
+        
+      
+       
+       //questions arising: console logging as return statement? what's the purpose
+       
+             
+     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+                  
+    </script>
+    
+</body>
+
+</html>
