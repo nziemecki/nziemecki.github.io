@@ -34,7 +34,7 @@ h1 {
     margin-bottom: 30px;
     background-color: rgba(255, 255, 255, 0.36);
     border-radius: 5px; 
-    -webkit-text-stroke: 1px rgb(252, 212, 212);
+    -webkit-text-stroke: .3px black;
     }
 
 @keyframes animateText {
