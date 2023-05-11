@@ -13,7 +13,7 @@
         body {
             margin: 0;
             padding: 0;
-            background: whitesmoke;
+            background: rgb(178, 205, 241);
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
@@ -24,13 +24,15 @@
             display: inline-block;
             margin-right: 20px;
             color: #001323;
+            
         }
         h2 {
             display: inline-block;
             color: #001323;
+            margin-left: 1em;
         }
         #map {
-            width: 80%;
+            width: 85%;
             height: 540px;
             margin: 10px auto;
         }
@@ -46,13 +48,18 @@
         red {
             color: red
         }
+
+        .map .phillyMarker {
+            background-color: red;
+        }
         
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Can We Make it Back to Philly?</h1>
+        <h1>Can we make it home?</h1>
+        <br>
         <h2>Nat Ziemecki</h2>
     </header>
 
@@ -64,7 +71,7 @@
             <br>- San Francisco
             <br>- Berlin
             <br>- Bangkok
-            <br> It also gives the percentage of fuel remaining at the end of the trip in a 747 plane with an assumed fuel capacity of 100,000 gallons and a fuel burn rate of 12 gallons/KM.
+            <br> It also gives the percentage of fuel remaining at the end of the trip in a 747 plane with an assumed fuel capacity of 100,000 gal and a fuel burn rate of 12 gal/KM.
             
         </p>
     </footer>
@@ -97,12 +104,14 @@ const cities = [
     latLong : L.latLng(13.683437, 100.749469)}
 ];
 
+
+
 var phillyLatLong = L.latLng([39.872767, -75.243586]);
 
 var phillyMarker =
         L.marker([39.872767, -75.243586])
             .addTo(map)
-            .bindPopup('');    
+            .bindPopup('Philadelphia');    
 
 const tankCapacity = 100000;
 const fuelBurnRate = 12;
