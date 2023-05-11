@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Midterm Part 3</title>
+    <title>Find the Point</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
@@ -58,7 +58,6 @@
 
     <footer>
         <p>Map authored by Nat Ziemecki</p>
-        <p>Additional information about the data and map goes here.</p>
         <p>
         </p>
     </footer>
@@ -120,11 +119,11 @@ var markers = L.layerGroup().addTo(map); //Creates an empty Layer Group
             if (meters/1609.34 > 25 && meters/1609.34 < 500) {
                 hint = "<p><u>HOT!!! HOT!!! HOT!!!</u></p>"
             } else if (meters/1609.34 > 500 && meters/1609.34 < 3000) {
-                hint = "<p><u>Warm but NOT hot!</u></p>"
+                hint = "<p><u>Warmer!</u></p>"
             } else if (meters/1609.34 > 3000 && meters/1609.34 < 7000) {
-                hint = "<p><u>Keep trying you'll get there eventually</u></p>"
+                hint = "<p><u>Keep trying you'll get there!</u></p>"
             } else if (meters/1609.34 > 7000 && meters/1609.34 < 10000) {
-                hint = "<p><u>Way far! <br> but at least you're not about to fall of the edge of the world.</u></p>"
+                hint = "<p><u>Way far! Freezing.</u></p>"
             } else if (meters/1609.34 > 1250) {
                 hint = "<p><u>You're as far off as is pysically possible, truly...</u></p>"
             } else if (meters/1609.34 < 25) {
