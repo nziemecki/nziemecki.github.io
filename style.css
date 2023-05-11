@@ -1,4 +1,3 @@
-
 /* Reset the default styles of HTML elements */
 html {
     box-sizing: border-box;
@@ -23,12 +22,13 @@ h1 {
     text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 30px;
+    letter-spacing: .2em;
     opacity: 0;
     color: rgb(255, 170, 192);
     padding-bottom: 35px;
     animation: animateText 7s forwards;
     height: 100px;
-    width: 400px;
+    width: 520px;
     padding-top: 18px;
     margin: auto;
     margin-bottom: 30px;
@@ -58,6 +58,7 @@ h1 {
 /*navlinks- "navlinks"*/
 .navlinks {  
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    letter-spacing: .15em;
     width: 225px;
     height: 100px;
     animation: animateText2 7s forwards;
@@ -159,8 +160,6 @@ h1 {
     padding-bottom: 25px;
     padding-top:25px;
     padding-left: 50px;
-
-    
   }
 
   #projects h2 {
