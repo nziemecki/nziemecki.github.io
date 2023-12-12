@@ -52,7 +52,7 @@
         }
     </style>
 
-	<style>#map { width: 100%; height: 575px; }
+	<style>#map { width: 100%; height: 965px; }
 .maptitle {color: #555;}
 .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } 
 .info h4 { margin: 0 0 5px; color: #777; }
@@ -68,10 +68,10 @@
 
 <script type="text/javascript">
 
-var map = L.map('map').setView([40.590482, -74.212060], 7);
+var map = L.map('map').setView([40.590482, -74.212060], 8);
 
 var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+    maxZoom: 13,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
